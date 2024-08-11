@@ -1,0 +1,1962 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> main
+Rule 1     main -> Statements
+Rule 2     Statements -> Statement Statements
+Rule 3     Statements -> Statement
+Rule 4     Statement -> assign SEMI_COLON Statements
+Rule 5     Statement -> expression SEMI_COLON Statements
+Rule 6     Statement -> list SEMI_COLON Statements
+Rule 7     Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+Rule 8     Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+Rule 9     Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+Rule 10    Statement -> declaration Statements
+Rule 11    Statement -> <empty>
+Rule 12    declaration -> var_list SEMI_COLON
+Rule 13    var_list -> DOLLAR ID
+Rule 14    var_list -> DOLLAR ID COMMA var_list
+Rule 15    var_list -> DOLLAR ID EQUAL expression
+Rule 16    var_list -> DOLLAR ID EQUAL expression COMMA var_list
+Rule 17    COND -> DOLLAR ID rel DOLLAR ID
+Rule 18    COND -> expression rel expression
+Rule 19    COND -> expression rel DOLLAR ID
+Rule 20    COND -> DOLLAR ID rel expression
+Rule 21    rel -> goe
+Rule 22    rel -> loe
+Rule 23    rel -> great
+Rule 24    rel -> less
+Rule 25    rel -> eq
+Rule 26    assign -> DOLLAR ID EQUAL expression
+Rule 27    expression -> expression PLUS term
+Rule 28    expression -> expression MINUS term
+Rule 29    expression -> expression TIMES term
+Rule 30    expression -> expression DIVIDE term
+Rule 31    expression -> LPAREN expression RPAREN
+Rule 32    expression -> term
+Rule 33    list -> AT ID
+Rule 34    term -> NUMBER
+Rule 35    term -> DOLLAR ID
+
+Terminals, with rules where they appear
+
+AT                   : 33
+COMMA                : 14 16
+DIVIDE               : 30
+DOLLAR               : 9 13 14 15 16 17 17 19 20 26 35
+EQUAL                : 15 16 26
+ID                   : 9 13 14 15 16 17 17 19 20 26 33 35
+LPAREN               : 7 8 9 31
+L_CBRACES            : 7 8 9
+MINUS                : 28
+NUMBER               : 34
+PLUS                 : 27
+RPAREN               : 7 8 9 31
+R_CBRACES            : 7 8 9
+SEMI_COLON           : 4 5 6 7 12
+TIMES                : 29
+do                   : 7
+eq                   : 25
+error                : 
+foreach              : 9
+goe                  : 21
+great                : 23
+less                 : 24
+loe                  : 22
+until                : 8
+while                : 7
+
+Nonterminals, with rules where they appear
+
+COND                 : 7 8
+Statement            : 2 3
+Statements           : 1 2 4 5 6 7 7 8 8 9 9 10
+assign               : 4
+declaration          : 10
+expression           : 5 15 16 18 18 19 20 26 27 28 29 30 31
+list                 : 6 9
+main                 : 0
+rel                  : 17 18 19 20
+term                 : 27 28 29 30 32
+var_list             : 12 14 16
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . main
+    (1) main -> . Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    $end            reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    main                           shift and go to state 1
+    Statements                     shift and go to state 2
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 1
+
+    (0) S' -> main .
+
+
+
+state 2
+
+    (1) main -> Statements .
+
+    $end            reduce using rule 1 (main -> Statements .)
+
+
+state 3
+
+    (2) Statements -> Statement . Statements
+    (3) Statements -> Statement .
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 3 (Statements -> Statement .)
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! reduce/reduce conflict for DOLLAR resolved using rule 3 (Statements -> Statement .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 3 (Statements -> Statement .)
+  ! reduce/reduce conflict for AT resolved using rule 3 (Statements -> Statement .)
+  ! reduce/reduce conflict for NUMBER resolved using rule 3 (Statements -> Statement .)
+  ! reduce/reduce conflict for R_CBRACES resolved using rule 3 (Statements -> Statement .)
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    $end            reduce using rule 3 (Statements -> Statement .)
+    R_CBRACES       reduce using rule 3 (Statements -> Statement .)
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 3 (Statements -> Statement .) ]
+  ! until           [ reduce using rule 3 (Statements -> Statement .) ]
+  ! foreach         [ reduce using rule 3 (Statements -> Statement .) ]
+  ! DOLLAR          [ reduce using rule 3 (Statements -> Statement .) ]
+  ! LPAREN          [ reduce using rule 3 (Statements -> Statement .) ]
+  ! AT              [ reduce using rule 3 (Statements -> Statement .) ]
+  ! NUMBER          [ reduce using rule 3 (Statements -> Statement .) ]
+  ! $end            [ reduce using rule 11 (Statement -> .) ]
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+  ! R_CBRACES       [ reduce using rule 11 (Statement -> .) ]
+
+    Statement                      shift and go to state 3
+    Statements                     shift and go to state 17
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 4
+
+    (4) Statement -> assign . SEMI_COLON Statements
+
+    SEMI_COLON      shift and go to state 18
+
+
+state 5
+
+    (5) Statement -> expression . SEMI_COLON Statements
+    (27) expression -> expression . PLUS term
+    (28) expression -> expression . MINUS term
+    (29) expression -> expression . TIMES term
+    (30) expression -> expression . DIVIDE term
+
+    SEMI_COLON      shift and go to state 19
+    PLUS            shift and go to state 20
+    MINUS           shift and go to state 21
+    TIMES           shift and go to state 22
+    DIVIDE          shift and go to state 23
+
+
+state 6
+
+    (6) Statement -> list . SEMI_COLON Statements
+
+    SEMI_COLON      shift and go to state 24
+
+
+state 7
+
+    (7) Statement -> do . L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+
+    L_CBRACES       shift and go to state 25
+
+
+state 8
+
+    (31) expression -> LPAREN . expression RPAREN
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    LPAREN          shift and go to state 8
+    NUMBER          shift and go to state 16
+    DOLLAR          shift and go to state 27
+
+    expression                     shift and go to state 26
+    term                           shift and go to state 13
+
+state 9
+
+    (8) Statement -> until . LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+
+    LPAREN          shift and go to state 28
+
+
+state 10
+
+    (9) Statement -> foreach . DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+
+    DOLLAR          shift and go to state 29
+
+
+state 11
+
+    (26) assign -> DOLLAR . ID EQUAL expression
+    (35) term -> DOLLAR . ID
+    (13) var_list -> DOLLAR . ID
+    (14) var_list -> DOLLAR . ID COMMA var_list
+    (15) var_list -> DOLLAR . ID EQUAL expression
+    (16) var_list -> DOLLAR . ID EQUAL expression COMMA var_list
+
+    ID              shift and go to state 30
+
+
+state 12
+
+    (10) Statement -> declaration . Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    $end            reduce using rule 11 (Statement -> .)
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    declaration                    shift and go to state 12
+    Statements                     shift and go to state 31
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 13
+
+    (32) expression -> term .
+
+    SEMI_COLON      reduce using rule 32 (expression -> term .)
+    PLUS            reduce using rule 32 (expression -> term .)
+    MINUS           reduce using rule 32 (expression -> term .)
+    TIMES           reduce using rule 32 (expression -> term .)
+    DIVIDE          reduce using rule 32 (expression -> term .)
+    RPAREN          reduce using rule 32 (expression -> term .)
+    goe             reduce using rule 32 (expression -> term .)
+    loe             reduce using rule 32 (expression -> term .)
+    great           reduce using rule 32 (expression -> term .)
+    less            reduce using rule 32 (expression -> term .)
+    eq              reduce using rule 32 (expression -> term .)
+    COMMA           reduce using rule 32 (expression -> term .)
+
+
+state 14
+
+    (33) list -> AT . ID
+
+    ID              shift and go to state 32
+
+
+state 15
+
+    (12) declaration -> var_list . SEMI_COLON
+
+    SEMI_COLON      shift and go to state 33
+
+
+state 16
+
+    (34) term -> NUMBER .
+
+    SEMI_COLON      reduce using rule 34 (term -> NUMBER .)
+    PLUS            reduce using rule 34 (term -> NUMBER .)
+    MINUS           reduce using rule 34 (term -> NUMBER .)
+    TIMES           reduce using rule 34 (term -> NUMBER .)
+    DIVIDE          reduce using rule 34 (term -> NUMBER .)
+    RPAREN          reduce using rule 34 (term -> NUMBER .)
+    goe             reduce using rule 34 (term -> NUMBER .)
+    loe             reduce using rule 34 (term -> NUMBER .)
+    great           reduce using rule 34 (term -> NUMBER .)
+    less            reduce using rule 34 (term -> NUMBER .)
+    eq              reduce using rule 34 (term -> NUMBER .)
+    COMMA           reduce using rule 34 (term -> NUMBER .)
+
+
+state 17
+
+    (2) Statements -> Statement Statements .
+
+    $end            reduce using rule 2 (Statements -> Statement Statements .)
+    do              reduce using rule 2 (Statements -> Statement Statements .)
+    until           reduce using rule 2 (Statements -> Statement Statements .)
+    foreach         reduce using rule 2 (Statements -> Statement Statements .)
+    DOLLAR          reduce using rule 2 (Statements -> Statement Statements .)
+    LPAREN          reduce using rule 2 (Statements -> Statement Statements .)
+    AT              reduce using rule 2 (Statements -> Statement Statements .)
+    NUMBER          reduce using rule 2 (Statements -> Statement Statements .)
+    R_CBRACES       reduce using rule 2 (Statements -> Statement Statements .)
+
+
+state 18
+
+    (4) Statement -> assign SEMI_COLON . Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    $end            reduce using rule 11 (Statement -> .)
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    assign                         shift and go to state 4
+    Statements                     shift and go to state 34
+    Statement                      shift and go to state 3
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 19
+
+    (5) Statement -> expression SEMI_COLON . Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    $end            reduce using rule 11 (Statement -> .)
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    expression                     shift and go to state 5
+    Statements                     shift and go to state 35
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    list                           shift and go to state 6
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 20
+
+    (27) expression -> expression PLUS . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    NUMBER          shift and go to state 16
+    DOLLAR          shift and go to state 27
+
+    term                           shift and go to state 36
+
+state 21
+
+    (28) expression -> expression MINUS . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    NUMBER          shift and go to state 16
+    DOLLAR          shift and go to state 27
+
+    term                           shift and go to state 37
+
+state 22
+
+    (29) expression -> expression TIMES . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    NUMBER          shift and go to state 16
+    DOLLAR          shift and go to state 27
+
+    term                           shift and go to state 38
+
+state 23
+
+    (30) expression -> expression DIVIDE . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    NUMBER          shift and go to state 16
+    DOLLAR          shift and go to state 27
+
+    term                           shift and go to state 39
+
+state 24
+
+    (6) Statement -> list SEMI_COLON . Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    $end            reduce using rule 11 (Statement -> .)
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    list                           shift and go to state 6
+    Statements                     shift and go to state 40
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 25
+
+    (7) Statement -> do L_CBRACES . Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    Statements                     shift and go to state 41
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 26
+
+    (31) expression -> LPAREN expression . RPAREN
+    (27) expression -> expression . PLUS term
+    (28) expression -> expression . MINUS term
+    (29) expression -> expression . TIMES term
+    (30) expression -> expression . DIVIDE term
+
+    RPAREN          shift and go to state 42
+    PLUS            shift and go to state 20
+    MINUS           shift and go to state 21
+    TIMES           shift and go to state 22
+    DIVIDE          shift and go to state 23
+
+
+state 27
+
+    (35) term -> DOLLAR . ID
+
+    ID              shift and go to state 43
+
+
+state 28
+
+    (8) Statement -> until LPAREN . COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (17) COND -> . DOLLAR ID rel DOLLAR ID
+    (18) COND -> . expression rel expression
+    (19) COND -> . expression rel DOLLAR ID
+    (20) COND -> . DOLLAR ID rel expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    DOLLAR          shift and go to state 45
+    LPAREN          shift and go to state 8
+    NUMBER          shift and go to state 16
+
+    COND                           shift and go to state 44
+    expression                     shift and go to state 46
+    term                           shift and go to state 13
+
+state 29
+
+    (9) Statement -> foreach DOLLAR . ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+
+    ID              shift and go to state 47
+
+
+state 30
+
+    (26) assign -> DOLLAR ID . EQUAL expression
+    (35) term -> DOLLAR ID .
+    (13) var_list -> DOLLAR ID .
+    (14) var_list -> DOLLAR ID . COMMA var_list
+    (15) var_list -> DOLLAR ID . EQUAL expression
+    (16) var_list -> DOLLAR ID . EQUAL expression COMMA var_list
+
+  ! reduce/reduce conflict for SEMI_COLON resolved using rule 13 (var_list -> DOLLAR ID .)
+    EQUAL           shift and go to state 48
+    PLUS            reduce using rule 35 (term -> DOLLAR ID .)
+    MINUS           reduce using rule 35 (term -> DOLLAR ID .)
+    TIMES           reduce using rule 35 (term -> DOLLAR ID .)
+    DIVIDE          reduce using rule 35 (term -> DOLLAR ID .)
+    SEMI_COLON      reduce using rule 13 (var_list -> DOLLAR ID .)
+    COMMA           shift and go to state 49
+
+  ! SEMI_COLON      [ reduce using rule 35 (term -> DOLLAR ID .) ]
+
+
+state 31
+
+    (10) Statement -> declaration Statements .
+
+    do              reduce using rule 10 (Statement -> declaration Statements .)
+    until           reduce using rule 10 (Statement -> declaration Statements .)
+    foreach         reduce using rule 10 (Statement -> declaration Statements .)
+    DOLLAR          reduce using rule 10 (Statement -> declaration Statements .)
+    LPAREN          reduce using rule 10 (Statement -> declaration Statements .)
+    AT              reduce using rule 10 (Statement -> declaration Statements .)
+    NUMBER          reduce using rule 10 (Statement -> declaration Statements .)
+    $end            reduce using rule 10 (Statement -> declaration Statements .)
+    R_CBRACES       reduce using rule 10 (Statement -> declaration Statements .)
+
+
+state 32
+
+    (33) list -> AT ID .
+
+    SEMI_COLON      reduce using rule 33 (list -> AT ID .)
+    RPAREN          reduce using rule 33 (list -> AT ID .)
+
+
+state 33
+
+    (12) declaration -> var_list SEMI_COLON .
+
+    do              reduce using rule 12 (declaration -> var_list SEMI_COLON .)
+    until           reduce using rule 12 (declaration -> var_list SEMI_COLON .)
+    foreach         reduce using rule 12 (declaration -> var_list SEMI_COLON .)
+    DOLLAR          reduce using rule 12 (declaration -> var_list SEMI_COLON .)
+    LPAREN          reduce using rule 12 (declaration -> var_list SEMI_COLON .)
+    AT              reduce using rule 12 (declaration -> var_list SEMI_COLON .)
+    NUMBER          reduce using rule 12 (declaration -> var_list SEMI_COLON .)
+    $end            reduce using rule 12 (declaration -> var_list SEMI_COLON .)
+    R_CBRACES       reduce using rule 12 (declaration -> var_list SEMI_COLON .)
+
+
+state 34
+
+    (4) Statement -> assign SEMI_COLON Statements .
+
+    do              reduce using rule 4 (Statement -> assign SEMI_COLON Statements .)
+    until           reduce using rule 4 (Statement -> assign SEMI_COLON Statements .)
+    foreach         reduce using rule 4 (Statement -> assign SEMI_COLON Statements .)
+    DOLLAR          reduce using rule 4 (Statement -> assign SEMI_COLON Statements .)
+    LPAREN          reduce using rule 4 (Statement -> assign SEMI_COLON Statements .)
+    AT              reduce using rule 4 (Statement -> assign SEMI_COLON Statements .)
+    NUMBER          reduce using rule 4 (Statement -> assign SEMI_COLON Statements .)
+    $end            reduce using rule 4 (Statement -> assign SEMI_COLON Statements .)
+    R_CBRACES       reduce using rule 4 (Statement -> assign SEMI_COLON Statements .)
+
+
+state 35
+
+    (5) Statement -> expression SEMI_COLON Statements .
+
+    do              reduce using rule 5 (Statement -> expression SEMI_COLON Statements .)
+    until           reduce using rule 5 (Statement -> expression SEMI_COLON Statements .)
+    foreach         reduce using rule 5 (Statement -> expression SEMI_COLON Statements .)
+    DOLLAR          reduce using rule 5 (Statement -> expression SEMI_COLON Statements .)
+    LPAREN          reduce using rule 5 (Statement -> expression SEMI_COLON Statements .)
+    AT              reduce using rule 5 (Statement -> expression SEMI_COLON Statements .)
+    NUMBER          reduce using rule 5 (Statement -> expression SEMI_COLON Statements .)
+    $end            reduce using rule 5 (Statement -> expression SEMI_COLON Statements .)
+    R_CBRACES       reduce using rule 5 (Statement -> expression SEMI_COLON Statements .)
+
+
+state 36
+
+    (27) expression -> expression PLUS term .
+
+    SEMI_COLON      reduce using rule 27 (expression -> expression PLUS term .)
+    PLUS            reduce using rule 27 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 27 (expression -> expression PLUS term .)
+    TIMES           reduce using rule 27 (expression -> expression PLUS term .)
+    DIVIDE          reduce using rule 27 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 27 (expression -> expression PLUS term .)
+    goe             reduce using rule 27 (expression -> expression PLUS term .)
+    loe             reduce using rule 27 (expression -> expression PLUS term .)
+    great           reduce using rule 27 (expression -> expression PLUS term .)
+    less            reduce using rule 27 (expression -> expression PLUS term .)
+    eq              reduce using rule 27 (expression -> expression PLUS term .)
+    COMMA           reduce using rule 27 (expression -> expression PLUS term .)
+
+
+state 37
+
+    (28) expression -> expression MINUS term .
+
+    SEMI_COLON      reduce using rule 28 (expression -> expression MINUS term .)
+    PLUS            reduce using rule 28 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 28 (expression -> expression MINUS term .)
+    TIMES           reduce using rule 28 (expression -> expression MINUS term .)
+    DIVIDE          reduce using rule 28 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 28 (expression -> expression MINUS term .)
+    goe             reduce using rule 28 (expression -> expression MINUS term .)
+    loe             reduce using rule 28 (expression -> expression MINUS term .)
+    great           reduce using rule 28 (expression -> expression MINUS term .)
+    less            reduce using rule 28 (expression -> expression MINUS term .)
+    eq              reduce using rule 28 (expression -> expression MINUS term .)
+    COMMA           reduce using rule 28 (expression -> expression MINUS term .)
+
+
+state 38
+
+    (29) expression -> expression TIMES term .
+
+    SEMI_COLON      reduce using rule 29 (expression -> expression TIMES term .)
+    PLUS            reduce using rule 29 (expression -> expression TIMES term .)
+    MINUS           reduce using rule 29 (expression -> expression TIMES term .)
+    TIMES           reduce using rule 29 (expression -> expression TIMES term .)
+    DIVIDE          reduce using rule 29 (expression -> expression TIMES term .)
+    RPAREN          reduce using rule 29 (expression -> expression TIMES term .)
+    goe             reduce using rule 29 (expression -> expression TIMES term .)
+    loe             reduce using rule 29 (expression -> expression TIMES term .)
+    great           reduce using rule 29 (expression -> expression TIMES term .)
+    less            reduce using rule 29 (expression -> expression TIMES term .)
+    eq              reduce using rule 29 (expression -> expression TIMES term .)
+    COMMA           reduce using rule 29 (expression -> expression TIMES term .)
+
+
+state 39
+
+    (30) expression -> expression DIVIDE term .
+
+    SEMI_COLON      reduce using rule 30 (expression -> expression DIVIDE term .)
+    PLUS            reduce using rule 30 (expression -> expression DIVIDE term .)
+    MINUS           reduce using rule 30 (expression -> expression DIVIDE term .)
+    TIMES           reduce using rule 30 (expression -> expression DIVIDE term .)
+    DIVIDE          reduce using rule 30 (expression -> expression DIVIDE term .)
+    RPAREN          reduce using rule 30 (expression -> expression DIVIDE term .)
+    goe             reduce using rule 30 (expression -> expression DIVIDE term .)
+    loe             reduce using rule 30 (expression -> expression DIVIDE term .)
+    great           reduce using rule 30 (expression -> expression DIVIDE term .)
+    less            reduce using rule 30 (expression -> expression DIVIDE term .)
+    eq              reduce using rule 30 (expression -> expression DIVIDE term .)
+    COMMA           reduce using rule 30 (expression -> expression DIVIDE term .)
+
+
+state 40
+
+    (6) Statement -> list SEMI_COLON Statements .
+
+    do              reduce using rule 6 (Statement -> list SEMI_COLON Statements .)
+    until           reduce using rule 6 (Statement -> list SEMI_COLON Statements .)
+    foreach         reduce using rule 6 (Statement -> list SEMI_COLON Statements .)
+    DOLLAR          reduce using rule 6 (Statement -> list SEMI_COLON Statements .)
+    LPAREN          reduce using rule 6 (Statement -> list SEMI_COLON Statements .)
+    AT              reduce using rule 6 (Statement -> list SEMI_COLON Statements .)
+    NUMBER          reduce using rule 6 (Statement -> list SEMI_COLON Statements .)
+    $end            reduce using rule 6 (Statement -> list SEMI_COLON Statements .)
+    R_CBRACES       reduce using rule 6 (Statement -> list SEMI_COLON Statements .)
+
+
+state 41
+
+    (7) Statement -> do L_CBRACES Statements . R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+
+    R_CBRACES       shift and go to state 50
+
+
+state 42
+
+    (31) expression -> LPAREN expression RPAREN .
+
+    SEMI_COLON      reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    goe             reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    loe             reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    great           reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    less            reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    eq              reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 31 (expression -> LPAREN expression RPAREN .)
+
+
+state 43
+
+    (35) term -> DOLLAR ID .
+
+    RPAREN          reduce using rule 35 (term -> DOLLAR ID .)
+    PLUS            reduce using rule 35 (term -> DOLLAR ID .)
+    MINUS           reduce using rule 35 (term -> DOLLAR ID .)
+    TIMES           reduce using rule 35 (term -> DOLLAR ID .)
+    DIVIDE          reduce using rule 35 (term -> DOLLAR ID .)
+    SEMI_COLON      reduce using rule 35 (term -> DOLLAR ID .)
+    goe             reduce using rule 35 (term -> DOLLAR ID .)
+    loe             reduce using rule 35 (term -> DOLLAR ID .)
+    great           reduce using rule 35 (term -> DOLLAR ID .)
+    less            reduce using rule 35 (term -> DOLLAR ID .)
+    eq              reduce using rule 35 (term -> DOLLAR ID .)
+    COMMA           reduce using rule 35 (term -> DOLLAR ID .)
+
+
+state 44
+
+    (8) Statement -> until LPAREN COND . RPAREN L_CBRACES Statements R_CBRACES Statements
+
+    RPAREN          shift and go to state 51
+
+
+state 45
+
+    (17) COND -> DOLLAR . ID rel DOLLAR ID
+    (20) COND -> DOLLAR . ID rel expression
+    (35) term -> DOLLAR . ID
+
+    ID              shift and go to state 52
+
+
+state 46
+
+    (18) COND -> expression . rel expression
+    (19) COND -> expression . rel DOLLAR ID
+    (27) expression -> expression . PLUS term
+    (28) expression -> expression . MINUS term
+    (29) expression -> expression . TIMES term
+    (30) expression -> expression . DIVIDE term
+    (21) rel -> . goe
+    (22) rel -> . loe
+    (23) rel -> . great
+    (24) rel -> . less
+    (25) rel -> . eq
+
+    PLUS            shift and go to state 20
+    MINUS           shift and go to state 21
+    TIMES           shift and go to state 22
+    DIVIDE          shift and go to state 23
+    goe             shift and go to state 54
+    loe             shift and go to state 55
+    great           shift and go to state 56
+    less            shift and go to state 57
+    eq              shift and go to state 58
+
+    rel                            shift and go to state 53
+
+state 47
+
+    (9) Statement -> foreach DOLLAR ID . LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+
+    LPAREN          shift and go to state 59
+
+
+state 48
+
+    (26) assign -> DOLLAR ID EQUAL . expression
+    (15) var_list -> DOLLAR ID EQUAL . expression
+    (16) var_list -> DOLLAR ID EQUAL . expression COMMA var_list
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    LPAREN          shift and go to state 8
+    NUMBER          shift and go to state 16
+    DOLLAR          shift and go to state 27
+
+    expression                     shift and go to state 60
+    term                           shift and go to state 13
+
+state 49
+
+    (14) var_list -> DOLLAR ID COMMA . var_list
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+    DOLLAR          shift and go to state 61
+
+    var_list                       shift and go to state 62
+
+state 50
+
+    (7) Statement -> do L_CBRACES Statements R_CBRACES . while LPAREN COND RPAREN SEMI_COLON Statements
+
+    while           shift and go to state 63
+
+
+state 51
+
+    (8) Statement -> until LPAREN COND RPAREN . L_CBRACES Statements R_CBRACES Statements
+
+    L_CBRACES       shift and go to state 64
+
+
+state 52
+
+    (17) COND -> DOLLAR ID . rel DOLLAR ID
+    (20) COND -> DOLLAR ID . rel expression
+    (35) term -> DOLLAR ID .
+    (21) rel -> . goe
+    (22) rel -> . loe
+    (23) rel -> . great
+    (24) rel -> . less
+    (25) rel -> . eq
+
+  ! shift/reduce conflict for goe resolved as shift
+  ! shift/reduce conflict for loe resolved as shift
+  ! shift/reduce conflict for great resolved as shift
+  ! shift/reduce conflict for less resolved as shift
+  ! shift/reduce conflict for eq resolved as shift
+    PLUS            reduce using rule 35 (term -> DOLLAR ID .)
+    MINUS           reduce using rule 35 (term -> DOLLAR ID .)
+    TIMES           reduce using rule 35 (term -> DOLLAR ID .)
+    DIVIDE          reduce using rule 35 (term -> DOLLAR ID .)
+    goe             shift and go to state 54
+    loe             shift and go to state 55
+    great           shift and go to state 56
+    less            shift and go to state 57
+    eq              shift and go to state 58
+
+  ! goe             [ reduce using rule 35 (term -> DOLLAR ID .) ]
+  ! loe             [ reduce using rule 35 (term -> DOLLAR ID .) ]
+  ! great           [ reduce using rule 35 (term -> DOLLAR ID .) ]
+  ! less            [ reduce using rule 35 (term -> DOLLAR ID .) ]
+  ! eq              [ reduce using rule 35 (term -> DOLLAR ID .) ]
+
+    rel                            shift and go to state 65
+
+state 53
+
+    (18) COND -> expression rel . expression
+    (19) COND -> expression rel . DOLLAR ID
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    DOLLAR          shift and go to state 67
+    LPAREN          shift and go to state 8
+    NUMBER          shift and go to state 16
+
+    expression                     shift and go to state 66
+    term                           shift and go to state 13
+
+state 54
+
+    (21) rel -> goe .
+
+    DOLLAR          reduce using rule 21 (rel -> goe .)
+    LPAREN          reduce using rule 21 (rel -> goe .)
+    NUMBER          reduce using rule 21 (rel -> goe .)
+
+
+state 55
+
+    (22) rel -> loe .
+
+    DOLLAR          reduce using rule 22 (rel -> loe .)
+    LPAREN          reduce using rule 22 (rel -> loe .)
+    NUMBER          reduce using rule 22 (rel -> loe .)
+
+
+state 56
+
+    (23) rel -> great .
+
+    DOLLAR          reduce using rule 23 (rel -> great .)
+    LPAREN          reduce using rule 23 (rel -> great .)
+    NUMBER          reduce using rule 23 (rel -> great .)
+
+
+state 57
+
+    (24) rel -> less .
+
+    DOLLAR          reduce using rule 24 (rel -> less .)
+    LPAREN          reduce using rule 24 (rel -> less .)
+    NUMBER          reduce using rule 24 (rel -> less .)
+
+
+state 58
+
+    (25) rel -> eq .
+
+    DOLLAR          reduce using rule 25 (rel -> eq .)
+    LPAREN          reduce using rule 25 (rel -> eq .)
+    NUMBER          reduce using rule 25 (rel -> eq .)
+
+
+state 59
+
+    (9) Statement -> foreach DOLLAR ID LPAREN . list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (33) list -> . AT ID
+
+    AT              shift and go to state 14
+
+    list                           shift and go to state 68
+
+state 60
+
+    (26) assign -> DOLLAR ID EQUAL expression .
+    (15) var_list -> DOLLAR ID EQUAL expression .
+    (16) var_list -> DOLLAR ID EQUAL expression . COMMA var_list
+    (27) expression -> expression . PLUS term
+    (28) expression -> expression . MINUS term
+    (29) expression -> expression . TIMES term
+    (30) expression -> expression . DIVIDE term
+
+  ! reduce/reduce conflict for SEMI_COLON resolved using rule 15 (var_list -> DOLLAR ID EQUAL expression .)
+    SEMI_COLON      reduce using rule 15 (var_list -> DOLLAR ID EQUAL expression .)
+    COMMA           shift and go to state 69
+    PLUS            shift and go to state 20
+    MINUS           shift and go to state 21
+    TIMES           shift and go to state 22
+    DIVIDE          shift and go to state 23
+
+  ! SEMI_COLON      [ reduce using rule 26 (assign -> DOLLAR ID EQUAL expression .) ]
+
+
+state 61
+
+    (13) var_list -> DOLLAR . ID
+    (14) var_list -> DOLLAR . ID COMMA var_list
+    (15) var_list -> DOLLAR . ID EQUAL expression
+    (16) var_list -> DOLLAR . ID EQUAL expression COMMA var_list
+
+    ID              shift and go to state 70
+
+
+state 62
+
+    (14) var_list -> DOLLAR ID COMMA var_list .
+
+    SEMI_COLON      reduce using rule 14 (var_list -> DOLLAR ID COMMA var_list .)
+
+
+state 63
+
+    (7) Statement -> do L_CBRACES Statements R_CBRACES while . LPAREN COND RPAREN SEMI_COLON Statements
+
+    LPAREN          shift and go to state 71
+
+
+state 64
+
+    (8) Statement -> until LPAREN COND RPAREN L_CBRACES . Statements R_CBRACES Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    Statements                     shift and go to state 72
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 65
+
+    (17) COND -> DOLLAR ID rel . DOLLAR ID
+    (20) COND -> DOLLAR ID rel . expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    DOLLAR          shift and go to state 73
+    LPAREN          shift and go to state 8
+    NUMBER          shift and go to state 16
+
+    expression                     shift and go to state 74
+    term                           shift and go to state 13
+
+state 66
+
+    (18) COND -> expression rel expression .
+    (27) expression -> expression . PLUS term
+    (28) expression -> expression . MINUS term
+    (29) expression -> expression . TIMES term
+    (30) expression -> expression . DIVIDE term
+
+    RPAREN          reduce using rule 18 (COND -> expression rel expression .)
+    PLUS            shift and go to state 20
+    MINUS           shift and go to state 21
+    TIMES           shift and go to state 22
+    DIVIDE          shift and go to state 23
+
+
+state 67
+
+    (19) COND -> expression rel DOLLAR . ID
+    (35) term -> DOLLAR . ID
+
+    ID              shift and go to state 75
+
+
+state 68
+
+    (9) Statement -> foreach DOLLAR ID LPAREN list . RPAREN L_CBRACES Statements R_CBRACES Statements
+
+    RPAREN          shift and go to state 76
+
+
+state 69
+
+    (16) var_list -> DOLLAR ID EQUAL expression COMMA . var_list
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+    DOLLAR          shift and go to state 61
+
+    var_list                       shift and go to state 77
+
+state 70
+
+    (13) var_list -> DOLLAR ID .
+    (14) var_list -> DOLLAR ID . COMMA var_list
+    (15) var_list -> DOLLAR ID . EQUAL expression
+    (16) var_list -> DOLLAR ID . EQUAL expression COMMA var_list
+
+    SEMI_COLON      reduce using rule 13 (var_list -> DOLLAR ID .)
+    COMMA           shift and go to state 49
+    EQUAL           shift and go to state 78
+
+
+state 71
+
+    (7) Statement -> do L_CBRACES Statements R_CBRACES while LPAREN . COND RPAREN SEMI_COLON Statements
+    (17) COND -> . DOLLAR ID rel DOLLAR ID
+    (18) COND -> . expression rel expression
+    (19) COND -> . expression rel DOLLAR ID
+    (20) COND -> . DOLLAR ID rel expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    DOLLAR          shift and go to state 45
+    LPAREN          shift and go to state 8
+    NUMBER          shift and go to state 16
+
+    COND                           shift and go to state 79
+    expression                     shift and go to state 46
+    term                           shift and go to state 13
+
+state 72
+
+    (8) Statement -> until LPAREN COND RPAREN L_CBRACES Statements . R_CBRACES Statements
+
+    R_CBRACES       shift and go to state 80
+
+
+state 73
+
+    (17) COND -> DOLLAR ID rel DOLLAR . ID
+    (35) term -> DOLLAR . ID
+
+    ID              shift and go to state 81
+
+
+state 74
+
+    (20) COND -> DOLLAR ID rel expression .
+    (27) expression -> expression . PLUS term
+    (28) expression -> expression . MINUS term
+    (29) expression -> expression . TIMES term
+    (30) expression -> expression . DIVIDE term
+
+    RPAREN          reduce using rule 20 (COND -> DOLLAR ID rel expression .)
+    PLUS            shift and go to state 20
+    MINUS           shift and go to state 21
+    TIMES           shift and go to state 22
+    DIVIDE          shift and go to state 23
+
+
+state 75
+
+    (19) COND -> expression rel DOLLAR ID .
+    (35) term -> DOLLAR ID .
+
+  ! reduce/reduce conflict for RPAREN resolved using rule 19 (COND -> expression rel DOLLAR ID .)
+    RPAREN          reduce using rule 19 (COND -> expression rel DOLLAR ID .)
+    PLUS            reduce using rule 35 (term -> DOLLAR ID .)
+    MINUS           reduce using rule 35 (term -> DOLLAR ID .)
+    TIMES           reduce using rule 35 (term -> DOLLAR ID .)
+    DIVIDE          reduce using rule 35 (term -> DOLLAR ID .)
+
+  ! RPAREN          [ reduce using rule 35 (term -> DOLLAR ID .) ]
+
+
+state 76
+
+    (9) Statement -> foreach DOLLAR ID LPAREN list RPAREN . L_CBRACES Statements R_CBRACES Statements
+
+    L_CBRACES       shift and go to state 82
+
+
+state 77
+
+    (16) var_list -> DOLLAR ID EQUAL expression COMMA var_list .
+
+    SEMI_COLON      reduce using rule 16 (var_list -> DOLLAR ID EQUAL expression COMMA var_list .)
+
+
+state 78
+
+    (15) var_list -> DOLLAR ID EQUAL . expression
+    (16) var_list -> DOLLAR ID EQUAL . expression COMMA var_list
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+
+    LPAREN          shift and go to state 8
+    NUMBER          shift and go to state 16
+    DOLLAR          shift and go to state 27
+
+    expression                     shift and go to state 83
+    term                           shift and go to state 13
+
+state 79
+
+    (7) Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND . RPAREN SEMI_COLON Statements
+
+    RPAREN          shift and go to state 84
+
+
+state 80
+
+    (8) Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES . Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    $end            reduce using rule 11 (Statement -> .)
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    Statements                     shift and go to state 85
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 81
+
+    (17) COND -> DOLLAR ID rel DOLLAR ID .
+    (35) term -> DOLLAR ID .
+
+  ! reduce/reduce conflict for RPAREN resolved using rule 17 (COND -> DOLLAR ID rel DOLLAR ID .)
+    RPAREN          reduce using rule 17 (COND -> DOLLAR ID rel DOLLAR ID .)
+    PLUS            reduce using rule 35 (term -> DOLLAR ID .)
+    MINUS           reduce using rule 35 (term -> DOLLAR ID .)
+    TIMES           reduce using rule 35 (term -> DOLLAR ID .)
+    DIVIDE          reduce using rule 35 (term -> DOLLAR ID .)
+
+  ! RPAREN          [ reduce using rule 35 (term -> DOLLAR ID .) ]
+
+
+state 82
+
+    (9) Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES . Statements R_CBRACES Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    list                           shift and go to state 6
+    Statements                     shift and go to state 86
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 83
+
+    (15) var_list -> DOLLAR ID EQUAL expression .
+    (16) var_list -> DOLLAR ID EQUAL expression . COMMA var_list
+    (27) expression -> expression . PLUS term
+    (28) expression -> expression . MINUS term
+    (29) expression -> expression . TIMES term
+    (30) expression -> expression . DIVIDE term
+
+    SEMI_COLON      reduce using rule 15 (var_list -> DOLLAR ID EQUAL expression .)
+    COMMA           shift and go to state 69
+    PLUS            shift and go to state 20
+    MINUS           shift and go to state 21
+    TIMES           shift and go to state 22
+    DIVIDE          shift and go to state 23
+
+
+state 84
+
+    (7) Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN . SEMI_COLON Statements
+
+    SEMI_COLON      shift and go to state 87
+
+
+state 85
+
+    (8) Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .
+
+    do              reduce using rule 8 (Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    until           reduce using rule 8 (Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    foreach         reduce using rule 8 (Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    DOLLAR          reduce using rule 8 (Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    LPAREN          reduce using rule 8 (Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    AT              reduce using rule 8 (Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    NUMBER          reduce using rule 8 (Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    $end            reduce using rule 8 (Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    R_CBRACES       reduce using rule 8 (Statement -> until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements .)
+
+
+state 86
+
+    (9) Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements . R_CBRACES Statements
+
+    R_CBRACES       shift and go to state 88
+
+
+state 87
+
+    (7) Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON . Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    $end            reduce using rule 11 (Statement -> .)
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    Statements                     shift and go to state 89
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 88
+
+    (9) Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES . Statements
+    (2) Statements -> . Statement Statements
+    (3) Statements -> . Statement
+    (4) Statement -> . assign SEMI_COLON Statements
+    (5) Statement -> . expression SEMI_COLON Statements
+    (6) Statement -> . list SEMI_COLON Statements
+    (7) Statement -> . do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements
+    (8) Statement -> . until LPAREN COND RPAREN L_CBRACES Statements R_CBRACES Statements
+    (9) Statement -> . foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements
+    (10) Statement -> . declaration Statements
+    (11) Statement -> .
+    (26) assign -> . DOLLAR ID EQUAL expression
+    (27) expression -> . expression PLUS term
+    (28) expression -> . expression MINUS term
+    (29) expression -> . expression TIMES term
+    (30) expression -> . expression DIVIDE term
+    (31) expression -> . LPAREN expression RPAREN
+    (32) expression -> . term
+    (33) list -> . AT ID
+    (12) declaration -> . var_list SEMI_COLON
+    (34) term -> . NUMBER
+    (35) term -> . DOLLAR ID
+    (13) var_list -> . DOLLAR ID
+    (14) var_list -> . DOLLAR ID COMMA var_list
+    (15) var_list -> . DOLLAR ID EQUAL expression
+    (16) var_list -> . DOLLAR ID EQUAL expression COMMA var_list
+
+  ! shift/reduce conflict for do resolved as shift
+  ! shift/reduce conflict for until resolved as shift
+  ! shift/reduce conflict for foreach resolved as shift
+  ! shift/reduce conflict for DOLLAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    do              shift and go to state 7
+    until           shift and go to state 9
+    foreach         shift and go to state 10
+    $end            reduce using rule 11 (Statement -> .)
+    R_CBRACES       reduce using rule 11 (Statement -> .)
+    DOLLAR          shift and go to state 11
+    LPAREN          shift and go to state 8
+    AT              shift and go to state 14
+    NUMBER          shift and go to state 16
+
+  ! do              [ reduce using rule 11 (Statement -> .) ]
+  ! until           [ reduce using rule 11 (Statement -> .) ]
+  ! foreach         [ reduce using rule 11 (Statement -> .) ]
+  ! DOLLAR          [ reduce using rule 11 (Statement -> .) ]
+  ! LPAREN          [ reduce using rule 11 (Statement -> .) ]
+  ! AT              [ reduce using rule 11 (Statement -> .) ]
+  ! NUMBER          [ reduce using rule 11 (Statement -> .) ]
+
+    list                           shift and go to state 6
+    Statements                     shift and go to state 90
+    Statement                      shift and go to state 3
+    assign                         shift and go to state 4
+    expression                     shift and go to state 5
+    declaration                    shift and go to state 12
+    term                           shift and go to state 13
+    var_list                       shift and go to state 15
+
+state 89
+
+    (7) Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .
+
+    do              reduce using rule 7 (Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .)
+    until           reduce using rule 7 (Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .)
+    foreach         reduce using rule 7 (Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .)
+    DOLLAR          reduce using rule 7 (Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .)
+    LPAREN          reduce using rule 7 (Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .)
+    AT              reduce using rule 7 (Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .)
+    NUMBER          reduce using rule 7 (Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .)
+    $end            reduce using rule 7 (Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .)
+    R_CBRACES       reduce using rule 7 (Statement -> do L_CBRACES Statements R_CBRACES while LPAREN COND RPAREN SEMI_COLON Statements .)
+
+
+state 90
+
+    (9) Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .
+
+    do              reduce using rule 9 (Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    until           reduce using rule 9 (Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    foreach         reduce using rule 9 (Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    DOLLAR          reduce using rule 9 (Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    LPAREN          reduce using rule 9 (Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    AT              reduce using rule 9 (Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    NUMBER          reduce using rule 9 (Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    $end            reduce using rule 9 (Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .)
+    R_CBRACES       reduce using rule 9 (Statement -> foreach DOLLAR ID LPAREN list RPAREN L_CBRACES Statements R_CBRACES Statements .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for do in state 0 resolved as shift
+WARNING: shift/reduce conflict for until in state 0 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 0 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 0 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 0 resolved as shift
+WARNING: shift/reduce conflict for AT in state 0 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 0 resolved as shift
+WARNING: shift/reduce conflict for do in state 3 resolved as shift
+WARNING: shift/reduce conflict for until in state 3 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 3 resolved as shift
+WARNING: shift/reduce conflict for do in state 3 resolved as shift
+WARNING: shift/reduce conflict for until in state 3 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 3 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 3 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 3 resolved as shift
+WARNING: shift/reduce conflict for AT in state 3 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 3 resolved as shift
+WARNING: shift/reduce conflict for do in state 12 resolved as shift
+WARNING: shift/reduce conflict for until in state 12 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 12 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 12 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 12 resolved as shift
+WARNING: shift/reduce conflict for AT in state 12 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 12 resolved as shift
+WARNING: shift/reduce conflict for do in state 18 resolved as shift
+WARNING: shift/reduce conflict for until in state 18 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 18 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 18 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 18 resolved as shift
+WARNING: shift/reduce conflict for AT in state 18 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 18 resolved as shift
+WARNING: shift/reduce conflict for do in state 19 resolved as shift
+WARNING: shift/reduce conflict for until in state 19 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 19 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 19 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 19 resolved as shift
+WARNING: shift/reduce conflict for AT in state 19 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 19 resolved as shift
+WARNING: shift/reduce conflict for do in state 24 resolved as shift
+WARNING: shift/reduce conflict for until in state 24 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 24 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 24 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 24 resolved as shift
+WARNING: shift/reduce conflict for AT in state 24 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 24 resolved as shift
+WARNING: shift/reduce conflict for do in state 25 resolved as shift
+WARNING: shift/reduce conflict for until in state 25 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 25 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 25 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 25 resolved as shift
+WARNING: shift/reduce conflict for AT in state 25 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 25 resolved as shift
+WARNING: shift/reduce conflict for goe in state 52 resolved as shift
+WARNING: shift/reduce conflict for loe in state 52 resolved as shift
+WARNING: shift/reduce conflict for great in state 52 resolved as shift
+WARNING: shift/reduce conflict for less in state 52 resolved as shift
+WARNING: shift/reduce conflict for eq in state 52 resolved as shift
+WARNING: shift/reduce conflict for do in state 64 resolved as shift
+WARNING: shift/reduce conflict for until in state 64 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 64 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 64 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 64 resolved as shift
+WARNING: shift/reduce conflict for AT in state 64 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 64 resolved as shift
+WARNING: shift/reduce conflict for do in state 80 resolved as shift
+WARNING: shift/reduce conflict for until in state 80 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 80 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 80 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 80 resolved as shift
+WARNING: shift/reduce conflict for AT in state 80 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 80 resolved as shift
+WARNING: shift/reduce conflict for do in state 82 resolved as shift
+WARNING: shift/reduce conflict for until in state 82 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 82 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 82 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 82 resolved as shift
+WARNING: shift/reduce conflict for AT in state 82 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 82 resolved as shift
+WARNING: shift/reduce conflict for do in state 87 resolved as shift
+WARNING: shift/reduce conflict for until in state 87 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 87 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 87 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 87 resolved as shift
+WARNING: shift/reduce conflict for AT in state 87 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 87 resolved as shift
+WARNING: shift/reduce conflict for do in state 88 resolved as shift
+WARNING: shift/reduce conflict for until in state 88 resolved as shift
+WARNING: shift/reduce conflict for foreach in state 88 resolved as shift
+WARNING: shift/reduce conflict for DOLLAR in state 88 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 88 resolved as shift
+WARNING: shift/reduce conflict for AT in state 88 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 88 resolved as shift
+WARNING: reduce/reduce conflict in state 3 resolved using rule (Statements -> Statement)
+WARNING: rejected rule (Statement -> <empty>) in state 3
+WARNING: reduce/reduce conflict in state 30 resolved using rule (var_list -> DOLLAR ID)
+WARNING: rejected rule (term -> DOLLAR ID) in state 30
+WARNING: reduce/reduce conflict in state 60 resolved using rule (var_list -> DOLLAR ID EQUAL expression)
+WARNING: rejected rule (assign -> DOLLAR ID EQUAL expression) in state 60
+WARNING: reduce/reduce conflict in state 75 resolved using rule (COND -> expression rel DOLLAR ID)
+WARNING: rejected rule (term -> DOLLAR ID) in state 75
+WARNING: reduce/reduce conflict in state 81 resolved using rule (COND -> DOLLAR ID rel DOLLAR ID)
+WARNING: rejected rule (term -> DOLLAR ID) in state 81
+WARNING: Rule (assign -> DOLLAR ID EQUAL expression) is never reduced

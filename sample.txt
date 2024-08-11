@@ -1,0 +1,30 @@
+$a=10;
+$b,$sum;
+
+$c = $a + $b;
+
+@list;
+
+foreach $a (@list)
+{
+   until($counter > 5)
+   {
+    $counter = $counter + 1;
+do 
+{
+ $c = a / 2;
+}while($a==$b);
+
+   }
+}
+
+do 
+{
+ $c = $a / 2;
+ 
+do 
+{
+ $c = $a / 2;
+}while($a==$b);
+}while($a==$b);
+ 
